@@ -1,0 +1,14 @@
+Hand Recognition Project aims to recognise a hand and extract some properties using regular webcam
+
+devs: - Mostafa Saad  | moustapha.saad.abdelhamed@gmail.com
+	  - Mahmoud Arafa | mahmoudarafa007@gmail.com
+
+- NO CODE IN MAIN FUNCITON
+- WindowManager Class to manage window creation
+- HandRecognition Class to handle the main flow of the code
+- 2 threads besides the main thread
+	- thread #1 will be used to handle frame processing and to prepare frame for the second thread
+	- thread #2 will be used to handle the actual hand recognition and extracting hand properties
+- FrameProcessor Class to handle the frame processing for the second thread
+- HPExtractor Class to handle the properties extracting
+- TrafficOfficer Class Manages exchanging Data Through Application
