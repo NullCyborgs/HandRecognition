@@ -1,9 +1,12 @@
 #include<iostream>
-#include"Window.h"
+#include"WindowManager.h"
 using namespace HandRecognition;
 using namespace std;
 int main(){
 	cout << "Hello, World!!!" << endl;
-	Window m("mine", 500, 500);
+	WindowManager::addWindow(WindowPtr(new Window("koko")), true);
+	WindowManager::addWindow(WindowPtr(new Window("moka",100,100)));
+	WindowManager::removeWindow("moka");
+	WindowManager::cleanUp();
 	return 0;
 }

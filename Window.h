@@ -1,5 +1,7 @@
 #pragma once
 #include<string>
+#include<opencv2\highgui\highgui.hpp>
+#include<memory>
 namespace HandRecognition{
 	class Window{
 	private:
@@ -7,6 +9,8 @@ namespace HandRecognition{
 		std::string _id;
 		//window deminsions
 		unsigned int _width, _height;
+		//input array that's being displayed by this window
+		cv::Mat _frame;
 
 		//init function to init a window
 		void init();
@@ -18,6 +22,10 @@ namespace HandRecognition{
 
 		//destructor
 		~Window();
+		//update function to be called so that the window will be shown
+		void update();
+		//show function for updating the current frame
+		void show(cv::Mat frame);
 
 		//getters & setters
 		unsigned int getWidth();
@@ -27,4 +35,5 @@ namespace HandRecognition{
 		void setWidth(unsigned int val);
 		void setHeight(unsigned int val);
 	};
+	typedef std::shared_ptr<Window> WindowPtr;
 }

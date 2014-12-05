@@ -1,5 +1,4 @@
 #include"Window.h"
-#include<opencv2\highgui\highgui.hpp>
 using namespace cv;
 using namespace std;
 using namespace HandRecognition;
@@ -8,6 +7,7 @@ Window::Window(string id, unsigned int width, unsigned int height){
 	_id = id;
 	_width = width;
 	_height = height;
+	_frame = Mat(_width,_height, CV_8UC3);
 	init();
 }
 Window::~Window(){
@@ -41,4 +41,12 @@ void Window::init(){
 
 void Window::resize(){
 	resizeWindow(_id, _width, _height);
+}
+
+void Window::update(){
+	imshow(_id, _frame);
+}
+void Window::show(Mat frame){
+	_frame = frame;
+	update();
 }
