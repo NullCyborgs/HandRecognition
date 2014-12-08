@@ -87,11 +87,13 @@
     <Text Include="ProjectOutline.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HR_Main.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HR_Main.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>

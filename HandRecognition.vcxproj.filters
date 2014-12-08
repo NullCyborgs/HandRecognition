@@ -29,12 +29,18 @@
     <ClCompile Include="WindowManager.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="HR_Main.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HR_Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
