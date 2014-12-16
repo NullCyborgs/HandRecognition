@@ -89,11 +89,16 @@
   <ItemGroup>
     <ClCompile Include="HR_Main.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TrafficOfficer.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AtomicWrapper.h" />
+    <ClInclude Include="FrameProcessor.h" />
+    <ClInclude Include="HandDetector.h" />
     <ClInclude Include="HR_Main.h" />
+    <ClInclude Include="TrafficOfficer.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>

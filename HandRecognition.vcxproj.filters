@@ -32,6 +32,9 @@
     <ClCompile Include="HR_Main.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="TrafficOfficer.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -41,6 +44,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HR_Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficOfficer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomicWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
