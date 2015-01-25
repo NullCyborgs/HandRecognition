@@ -47,6 +47,6 @@ void Window::update(){
 	imshow(_id, _frame);
 }
 void Window::show(Mat frame){
-	_frame = frame;
+	_frame = frame.clone();
 	update();
 }

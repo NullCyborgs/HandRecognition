@@ -1,10 +1,22 @@
-﻿Build started 12/12/2014 06:20:30 م.
+﻿Build started 25/01/2015 08:21:56 م.
      1>Project "D:\WIP Projects\HandRecognition\HandRecognition.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\OpenCV\build\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt HR_Main.cpp main.cpp
          HR_Main.cpp
+     1>d:\wip projects\handrecognition\frameprocessor.h(40): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\frameprocessor.h(41): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\frameprocessor.h(42): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\frameprocessor.h(43): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\frameprocessor.h(44): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\frameprocessor.h(45): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
      1>d:\wip projects\handrecognition\hr_main.cpp(31): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
      1>d:\wip projects\handrecognition\hr_main.cpp(32): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(64): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(65): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(68): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\wip projects\handrecognition\hr_main.cpp(69): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
          Generating Code...
          Skipping... (no relevant changes detected)
          main.cpp
@@ -19,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.22
+Time Elapsed 00:00:09.41

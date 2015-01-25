@@ -4,6 +4,7 @@
 #include<string>
 #include<opencv2\highgui\highgui.hpp>
 namespace HandRecognition{
+	typedef std::shared_ptr<cv::Mat> MatPtr;
 	class WindowManager{
 	private:
 		//map that will contain everywindow
@@ -13,7 +14,7 @@ namespace HandRecognition{
 
 	public:
 		//to show img in a window, the default is the main window
-		static void show(cv::Mat frame, std::string id="");
+		static void show(MatPtr frame, std::string id = "");
 		//function to remove a window from map
 		static void removeWindow(std::string id);
 		//function to add window to the map, and if it's the main window the boolean is checked

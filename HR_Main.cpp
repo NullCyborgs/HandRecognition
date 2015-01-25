@@ -32,17 +32,41 @@ void HR_Main::Main(){
 	_cameraHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 
 	WindowManager::addWindow(WindowPtr(new Window("main",_cameraWidth,_cameraHeight)), true);
+	WindowManager::addWindow(WindowPtr(new Window("tracks",700,400)));
+	int BMin = 0, BMax = 0, GMin = 0, GMax = 0, RMin = 0, RMax = 0;
+	createTrackbar("BMin", "tracks", &BMin,255);
+	createTrackbar("BMax", "tracks", &BMax, 255);
+	createTrackbar("GMin", "tracks", &GMin, 255);
+	createTrackbar("GMax", "tracks", &GMax, 255);
+	createTrackbar("RMin", "tracks", &RMin, 255);
+	createTrackbar("RMax", "tracks", &RMax, 255);
+
 	launchThreads();
+
 	while (1){
-		Mat frame;
-		bool successFrameRead = cap.read(frame);
-		if (!successFrameRead || frame.data[0] == '\0'){
+		MatPtr frame = MatPtr(new Mat());
+		MatPtr res = nullptr;
+		bool successFrameRead = cap.read(*frame);
+		if (!successFrameRead || frame->data[0] == '\0'){
 			cout << "Failed to read a frame\n";
 		}
 		else{
-			TrafficOfficer::pushProcessingQueue(frame.clone());
-			WindowManager::show(frame);
+			TrafficOfficer::pushProcessingQueue(frame);
+			//WindowManager::show(frame);
 		}
+		if (TrafficOfficer::peekViewQueue()){
+			if (res)
+				res = nullptr;
+			res = TrafficOfficer::popViewQueue();
+		}
+		if (res != nullptr)
+			WindowManager::show(MatPtr(res));
+		TrafficOfficer::val("BMin", BMin);
+		TrafficOfficer::val("BMax", BMax);
+		TrafficOfficer::val("GMin", GMin);
+		TrafficOfficer::val("GMax", GMax);
+		TrafficOfficer::val("RMin", RMin);
+		TrafficOfficer::val("RMax", RMax);
 		if (waitKey(30) == 27){
 			cout << "User pressed esc\n";
 			break;

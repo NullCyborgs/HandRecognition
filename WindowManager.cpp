@@ -4,16 +4,16 @@ using namespace std;
 using namespace cv;
 map<string, WindowPtr> WindowManager::_windowMap = map<string, WindowPtr>();
 WindowPtr WindowManager::_mainWindow = nullptr;
-void WindowManager::show(Mat frame, string id){
+void WindowManager::show(MatPtr frame, string id){
 	if (id != ""){
 		auto win = _windowMap.find(id);
 		if (win != _windowMap.end()){
-			win->second->show(frame);
+			win->second->show(*frame);
 		}
 	}
 	else{
 		if (_mainWindow){
-			_mainWindow->show(frame);
+			_mainWindow->show(*frame);
 		}
 	}
 }
