@@ -4,18 +4,21 @@ using namespace std;
 using namespace cv;
 map<string, WindowPtr> WindowManager::_windowMap = map<string, WindowPtr>();
 WindowPtr WindowManager::_mainWindow = nullptr;
-void WindowManager::show(MatPtr frame, string id){
+bool WindowManager::show(Mat frame, string id){
 	if (id != ""){
 		auto win = _windowMap.find(id);
 		if (win != _windowMap.end()){
-			win->second->show(*frame);
+			win->second->show(frame);
+			return true;
 		}
 	}
 	else{
 		if (_mainWindow){
-			_mainWindow->show(*frame);
+			_mainWindow->show(frame);
+			return true;
 		}
 	}
+	return false;
 }
 void WindowManager::removeWindow(string id){
 	auto win = _windowMap.find(id);
@@ -33,5 +36,5 @@ void WindowManager::update(){
 }
 void WindowManager::cleanUp(){
 	_windowMap.clear();
-	_mainWindow = nullptr;
+	destroyAllWindows();
 }

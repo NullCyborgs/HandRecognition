@@ -35,6 +35,9 @@
     <ClCompile Include="TrafficOfficer.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="HandDetector.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -56,6 +59,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HandDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgToken.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

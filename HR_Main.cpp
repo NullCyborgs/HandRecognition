@@ -4,10 +4,14 @@
 #include<opencv2\highgui\highgui.hpp>
 #include<iostream>
 #include<queue>
+#include"ImgToken.h"
+#include<Windows.h>
+#include<conio.h>
 using namespace std;
 using namespace cv;
 using namespace HandRecognition;
-
+#define online
+//#define offline
 HR_Main::HR_Main() {
 	_cameraWidth = _cameraHeight = 0;
 	_frameProcessor = new FrameProcessor();
@@ -22,6 +26,7 @@ HR_Main::~HR_Main(){
 }
 
 void HR_Main::Main(){
+#ifdef online
 	VideoCapture cap(0);
 	waitKey(1000);
 	if (!cap.isOpened()){
@@ -30,11 +35,22 @@ void HR_Main::Main(){
 	}
 	_cameraWidth = cap.get(CV_CAP_PROP_FRAME_WIDTH);
 	_cameraHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+#endif
+#ifdef offline
+	Mat orgImg = imread("E:/Samples/Right Hand/RH1_5.jpg");
+	pyrDown(orgImg, orgImg);
+	pyrDown(orgImg, orgImg);
+	//pyrDown(orgImg, orgImg);
+	_cameraWidth = orgImg.cols;
+	_cameraHeight = orgImg.rows;
+#endif
 
 	WindowManager::addWindow(WindowPtr(new Window("main",_cameraWidth,_cameraHeight)), true);
-	WindowManager::addWindow(WindowPtr(new Window("tracks",700,400)));
-	int BMin = 0, BMax = 0, GMin = 0, GMax = 0, RMin = 0, RMax = 0;
-	createTrackbar("BMin", "tracks", &BMin,255);
+	WindowManager::addWindow(WindowPtr(new Window("Original", _cameraWidth, _cameraHeight)));
+	WindowManager::addWindow(WindowPtr(new Window("tracks",400,400)));
+	//WindowManager::addWindow(Window("debug", _cameraWidth, _cameraHeight));
+	int BMin = 0, BMax = 200, GMin = 0, GMax = 100, RMin = 0, RMax = 255;
+	createTrackbar("BMin", "tracks", &BMin, 255);
 	createTrackbar("BMax", "tracks", &BMax, 255);
 	createTrackbar("GMin", "tracks", &GMin, 255);
 	createTrackbar("GMax", "tracks", &GMax, 255);
@@ -44,23 +60,31 @@ void HR_Main::Main(){
 	launchThreads();
 
 	while (1){
-		MatPtr frame = MatPtr(new Mat());
-		MatPtr res = nullptr;
-		bool successFrameRead = cap.read(*frame);
-		if (!successFrameRead || frame->data[0] == '\0'){
+		ImgToken img, res;
+#ifdef online
+		bool successFrameRead = cap.read(img.original);
+#endif
+#ifdef offline
+		bool successFrameRead = true;
+		img.original = orgImg.clone();
+#endif
+		if (!successFrameRead){
 			cout << "Failed to read a frame\n";
 		}
 		else{
-			TrafficOfficer::pushProcessingQueue(frame);
+			TrafficOfficer::pushProcessingQueue(img);
 			//WindowManager::show(frame);
 		}
 		if (TrafficOfficer::peekViewQueue()){
-			if (res)
-				res = nullptr;
+			/*if (res)
+				res = nullptr;*/
 			res = TrafficOfficer::popViewQueue();
 		}
-		if (res != nullptr)
-			WindowManager::show(MatPtr(res));
+		if (res.contour.cols > 0){
+			WindowManager::show(res.contour);
+			WindowManager::show(res.original, "Original");
+		}
+		WindowManager::update();
 		TrafficOfficer::val("BMin", BMin);
 		TrafficOfficer::val("BMax", BMax);
 		TrafficOfficer::val("GMin", GMin);
@@ -71,6 +95,7 @@ void HR_Main::Main(){
 			cout << "User pressed esc\n";
 			break;
 		}
+		Sleep(50);
 	}
 	//cleaning the traffic
 	TrafficOfficer::cleanUp();

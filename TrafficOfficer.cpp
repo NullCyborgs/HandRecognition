@@ -2,10 +2,11 @@
 using namespace std;
 using namespace cv;
 using namespace HandRecognition;
-std::queue<MatPtr> TrafficOfficer::_processingQueue = queue<MatPtr>();
-std::queue<MatPtr> TrafficOfficer::_detectingQueue = queue<MatPtr>();
-std::queue<MatPtr> TrafficOfficer::_viewQueue = queue<MatPtr>();
+std::queue<ImgToken> TrafficOfficer::_processingQueue = queue<ImgToken>();
+std::queue<ImgToken> TrafficOfficer::_detectingQueue = queue<ImgToken>();
+std::queue<ImgToken> TrafficOfficer::_viewQueue = queue<ImgToken>();
 std::map<std::string, float> TrafficOfficer::_valMap = map<string, float>();
+
 
 bool TrafficOfficer::peekDetectingQueue(){
 	if (_detectingQueue.size() > 0)
@@ -23,30 +24,30 @@ bool TrafficOfficer::peekViewQueue(){
 	return false;
 }
 
-MatPtr TrafficOfficer::popDetectingQueue(){
+ImgToken TrafficOfficer::popDetectingQueue(){
 	auto res = _detectingQueue.front();
 	_detectingQueue.pop();
 	return res;
 }
-MatPtr TrafficOfficer::popProcessingQueue(){
+ImgToken TrafficOfficer::popProcessingQueue(){
 	auto res = _processingQueue.front();
 	_processingQueue.pop();
 	return res;
 }
-MatPtr TrafficOfficer::popViewQueue(){
+ImgToken TrafficOfficer::popViewQueue(){
 	auto res = _viewQueue.front();
 	_viewQueue.pop();
 	return res;
 }
 
-void TrafficOfficer::pushDetectingQueue(MatPtr frame){
+void TrafficOfficer::pushDetectingQueue(ImgToken frame){
 	_detectingQueue.push(frame);
 }
 
-void TrafficOfficer::pushProcessingQueue(MatPtr frame){
+void TrafficOfficer::pushProcessingQueue(ImgToken frame){
 	_processingQueue.push(frame);
 }
-void TrafficOfficer::pushViewQueue(MatPtr frame){
+void TrafficOfficer::pushViewQueue(ImgToken frame){
 	_viewQueue.push(frame);
 }
 void TrafficOfficer::val(string key, float v){
@@ -57,8 +58,8 @@ float TrafficOfficer::val(string key){
 }
 
 void TrafficOfficer::cleanUp(){
-	_processingQueue = queue<MatPtr>();
-	_detectingQueue = queue<MatPtr>();
-	_viewQueue = queue<MatPtr>();
+	_processingQueue = queue<ImgToken>();
+	_detectingQueue = queue<ImgToken>();
+	_viewQueue = queue<ImgToken>();
 	_valMap.clear();
 }

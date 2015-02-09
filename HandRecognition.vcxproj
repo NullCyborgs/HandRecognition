@@ -87,6 +87,7 @@
     <Text Include="ProjectOutline.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HandDetector.cpp" />
     <ClCompile Include="HR_Main.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TrafficOfficer.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="FrameProcessor.h" />
     <ClInclude Include="HandDetector.h" />
     <ClInclude Include="HR_Main.h" />
+    <ClInclude Include="ImgToken.h" />
     <ClInclude Include="TrafficOfficer.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowManager.h" />
